@@ -4,6 +4,12 @@
 #echo "Collect static files"
 #python manage.py collectstatic --noinput
 
+# Install corsheaders
+# Install djangorestframework
+pip3 install django
+pip3 install djangorestframework
+pip3 install django-cors-headers
+
 # Apply database migrations
 echo "Apply database migrations"
 pipenv run python manage.py makemigrations

@@ -4,7 +4,7 @@ services:
   django:
     container_name: processor
     build:
-      context: ./processor
+      context: /processor
     env_file:
       - ./processor/.env
     ports:
