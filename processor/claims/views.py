@@ -4,7 +4,7 @@ from rest_framework.parsers import JSONParser
 from django.http.response import JsonResponse
 
 from claims.models import Claims
-from claims.services.claimsService import processClaim
+from claims.services.claims_service import processClaim
 
 # Create your views here.
 
