@@ -1,6 +1,6 @@
 import datetime
 
-def ConvertRequestToModel(claims_json_data):
+def ValidateRequest(claims_json_data):
     # Null check
     if claims_json_data == None:
         return None

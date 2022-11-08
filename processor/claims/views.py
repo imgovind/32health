@@ -5,7 +5,7 @@ from django.http.response import JsonResponse
 
 from claims.models import Claims
 from claims.serializers import ClaimsSerializer
-from claims.helpers import ConvertRequestToModel
+from claims.helpers import ValidateRequest
 
 # Create your views here.
 
@@ -17,7 +17,7 @@ def claimsApi(request, id=0):
         return JsonResponse(claims_serializer.data, safe=False)
     elif request.method == 'POST':
         claims_json_data = JSONParser().parse(request)
-        claims_data = ConvertRequestToModel(claims_json_data)
+        claims_data = ValidateRequest(claims_json_data)
         claims_serializer = ClaimsSerializer(data=claims_data)
         if claims_serializer.is_valid():
             claims_serializer.save()
