@@ -1,6 +1,6 @@
 from claims.serializers import ClaimsSerializer
-from claims.helpers import ValidateRequest
 from claims.services.eventService import sendClaimProcessedEvent
+from claims.helpers.requestHelper import ValidateRequest
 from claims.constants import ClaimsFields
 
 def processClaim(claims_json_data):
