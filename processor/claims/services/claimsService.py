@@ -8,7 +8,6 @@ def processClaim(claims_json_data):
     # print(claims_data)
     NetFee = calculateNetFees(claims_data)
     claims_data[ClaimsFields.NetFee] = NetFee
-    print(claims_data)
 
     claims_serializer = ClaimsSerializer(data=claims_data)
 
@@ -30,9 +29,10 @@ def calculateNetFees(claims_data):
     if not any(field in required_fields for field in all_fields):
         return None
 
-    print("Valid in NetFees")
-
     # Calculate NetFee
-    NetFee = claims_data[ClaimsFields.ProviderFees] + claims_data[ClaimsFields.MemberCoinsurance] + claims_data[ClaimsFields.MemberCopay] - claims_data[ClaimsFields.AllowedFees]
+    NetFee = claims_data[ClaimsFields.ProviderFees] + \
+         claims_data[ClaimsFields.MemberCoinsurance] + \
+            claims_data[ClaimsFields.MemberCopay] - \
+                claims_data[ClaimsFields.AllowedFees]
 
     return NetFee

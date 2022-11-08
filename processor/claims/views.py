@@ -18,7 +18,7 @@ def claimsApi(request, id=0):
         claims_json_data = JSONParser().parse(request)
 
         if processClaim(claims_json_data):
-            return JsonResponse("Added Successfully", safe=False)
+            return JsonResponse({'status':'false','message':'Added successfully'}, status=200, safe=False)
 
             # Over here what I would do is use RabbitMQ or Kafka
             # Send a message to a queue to which the payment service has subscribed to
@@ -27,6 +27,6 @@ def claimsApi(request, id=0):
             # could also use a service bus to talk to it but keep it simple
 
         else:
-            return JsonResponse("Invalid Data", safe=False)
+            return JsonResponse({'status':'false','message':'Bad Request'}, status=400, safe=False)
     else:
-        return JsonResponse("Unsupported Operation", safe=False)
+        return JsonResponse({'status':'false','message':'Unsupported Operation'}, status=400, safe=False)
