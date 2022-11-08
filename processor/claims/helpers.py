@@ -1,4 +1,5 @@
 import datetime
+from claims.constants import ClaimsFields
 
 def ValidateRequest(claims_json_data):
     # Null check
@@ -6,15 +7,15 @@ def ValidateRequest(claims_json_data):
         return None
 
     # ServiceDate
-    if "ServiceDate" not in claims_json_data:
+    if ClaimsFields.ServiceDate not in claims_json_data:
         return None
-    dt = claims_json_data["ServiceDate"].split(' ')[0].split('/')
+    dt = claims_json_data[ClaimsFields.ServiceDate].split(' ')[0].split('/')
     ServiceDate = datetime.datetime(int('20' + dt[2]), int(dt[0]), int(dt[1]))
 
     # SubmittedProcedure
-    if "SubmittedProcedure" not in claims_json_data:
+    if ClaimsFields.SubmittedProcedure not in claims_json_data:
         return None
-    SubmittedProcedure = claims_json_data["SubmittedProcedure"]
+    SubmittedProcedure = claims_json_data[ClaimsFields.SubmittedProcedure]
 
     # Check if the submitted procedure starts with D
     if SubmittedProcedure.split[0] != 'D':
@@ -22,63 +23,61 @@ def ValidateRequest(claims_json_data):
 
     # Quandrant
     Quadrant = None
-    if "Quadrant" in claims_json_data:
-        Quadrant = claims_json_data["Quadrant"]
+    if ClaimsFields.Quadrant in claims_json_data:
+        Quadrant = claims_json_data[ClaimsFields.Quadrant]
 
     # PlanGroupNumber
-    if "PlanGroupNumber" not in claims_json_data:
+    if ClaimsFields.PlanGroupNumber not in claims_json_data:
         return None
-    PlanGroupNumber = claims_json_data["PlanGroupNumber"]
+    PlanGroupNumber = claims_json_data[ClaimsFields.PlanGroupNumber]
 
     # SubscriberNumber
-    if "SubscriberNumber" not in claims_json_data:
+    if ClaimsFields.SubscriberNumber not in claims_json_data:
         return None
-    SubscriberNumber = claims_json_data["SubscriberNumber"]
+    SubscriberNumber = claims_json_data[ClaimsFields.SubscriberNumber]
 
     # ProviderNPI
-    if "ProviderNPI" not in claims_json_data:
+    if ClaimsFields.ProviderNPI not in claims_json_data:
         return None
-    ProviderNPI = claims_json_data["ProviderNPI"]
+    ProviderNPI = claims_json_data[ClaimsFields.ProviderNPI]
 
     # Check if provider NPI is of length 10
     if len(ProviderNPI) != 10:
         return None
 
     # ProviderFees
-    if "ProviderFees" not in claims_json_data:
+    if ClaimsFields.ProviderFees not in claims_json_data:
         return None
-    ProviderFees = int(float(claims_json_data["ProviderFees"].split("$")[1]) * 100)
+    ProviderFees = int(float(claims_json_data[ClaimsFields.ProviderFees].split("$")[1]) * 100)
 
     # AllowedFees
-    if "AllowedFees" not in claims_json_data:
+    if ClaimsFields.AllowedFees not in claims_json_data:
         return None
-    AllowedFees = int(float(claims_json_data["AllowedFees"].split("$")[1]) * 100)
+    AllowedFees = int(float(claims_json_data[ClaimsFields.AllowedFees].split("$")[1]) * 100)
 
     #MemberCoinsurance
-    if "MemberCoinsurance" not in claims_json_data:
+    if ClaimsFields.MemberCoinsurance not in claims_json_data:
         return None
-    MemberCoinsurance = int(float(claims_json_data["MemberCoinsurance"].split("$")[1]) * 100)
+    MemberCoinsurance = int(float(claims_json_data[ClaimsFields.MemberCoinsurance].split("$")[1]) * 100)
 
     #MemberCopay
-    if "MemberCopay" not in claims_json_data:
+    if ClaimsFields.MemberCopay not in claims_json_data:
         return None
-    MemberCopay = int(float(claims_json_data["MemberCopay"].split("$")[1]) * 100)
+    MemberCopay = int(float(claims_json_data[ClaimsFields.MemberCopay].split("$")[1]) * 100)
 
-    # Calculate NetFee
-    NetFee = ProviderFees + MemberCoinsurance + MemberCopay - AllowedFees
 
     claims_data = {
-        "ServiceDate" : ServiceDate,
-        "SubmittedProcedure" : SubmittedProcedure,
-        "Quadrant" : Quadrant,
-        "PlanGroupNumber" : PlanGroupNumber,
-        "SubscriberNumber" : SubscriberNumber,
-        "ProviderNPI" : ProviderNPI,
-        "ProviderFees" : ProviderFees,
-        "AllowedFees" : AllowedFees,
-        "MemberCoinsurance" : MemberCoinsurance,
-        "MemberCopay" : MemberCopay,
-        "NetFee" : NetFee,
+        ClaimsFields.ServiceDate : ServiceDate,
+        ClaimsFields.SubmittedProcedure : SubmittedProcedure,
+        ClaimsFields.Quadrant : Quadrant,
+        ClaimsFields.PlanGroupNumber : PlanGroupNumber,
+        ClaimsFields.SubscriberNumber : SubscriberNumber,
+        ClaimsFields.ProviderNPI : ProviderNPI,
+        ClaimsFields.ProviderFees : ProviderFees,
+        ClaimsFields.AllowedFees : AllowedFees,
+        ClaimsFields.MemberCoinsurance : MemberCoinsurance,
+        ClaimsFields.MemberCopay : MemberCopay,
+        ClaimsFields.NetFee : NetFee,
     }
 
     return claims_data

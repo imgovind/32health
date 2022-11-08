@@ -4,8 +4,7 @@ from rest_framework.parsers import JSONParser
 from django.http.response import JsonResponse
 
 from claims.models import Claims
-from claims.serializers import ClaimsSerializer
-from claims.helpers import ValidateRequest
+from claims.services.claimsService import processClaim
 
 # Create your views here.
 
@@ -17,10 +16,8 @@ def claimsApi(request, id=0):
         return JsonResponse(claims_serializer.data, safe=False)
     elif request.method == 'POST':
         claims_json_data = JSONParser().parse(request)
-        claims_data = ValidateRequest(claims_json_data)
-        claims_serializer = ClaimsSerializer(data=claims_data)
-        if claims_serializer.is_valid():
-            claims_serializer.save()
+
+        if processClaim(claims_json_data):
             return JsonResponse("Added Successfully", safe=False)
 
             # Over here what I would do is use RabbitMQ or Kafka
