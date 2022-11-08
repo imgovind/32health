@@ -1,0 +1,13 @@
+version: "3.8"
+
+services:
+  django:
+    container_name: processor
+    build:
+      context: ./processor
+    env_file:
+      - ./processor/.env
+    ports:
+      - 8000:8000
+    volumes:
+      - ./processor:/processor
