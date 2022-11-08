@@ -24,6 +24,5 @@ def claimsApi(request, id=0):
         # Request was successfully processed
         return JsonResponse({'status':'false','message':'Added successfully'}, status=200, safe=False)
     else:
-
         # Unsupported operation
         return JsonResponse({'status':'false','message':'Unsupported Operation'}, status=400, safe=False)
