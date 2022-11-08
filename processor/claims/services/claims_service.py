@@ -1,16 +1,22 @@
+import asyncio
 from claims.serializers import ClaimsSerializer
-from claims.services.events_service import sendClaimProcessedEvent
-from claims.helpers.request_helper import ValidateRequest
+from claims.services.events_service import send_claim_processed_event
+from claims.helpers.request_helper import validate_request
 from claims.constants import ClaimsFields
 
-def processClaim(claims_json_data):
-    claims_data = ValidateRequest(claims_json_data)
-    # print(claims_data)
-    NetFee = calculateNetFees(claims_data)
+def process_claim(claims_json_data):
+    claims_data = validate_request(claims_json_data)
+
+    # Invalid claims data
+    if claims_data == None:
+        return False
+
+    # Calculate and set NetFees
+    NetFee = calculate_net_fees(claims_data)
     claims_data[ClaimsFields.NetFee] = NetFee
 
+    # Run serializer
     claims_serializer = ClaimsSerializer(data=claims_data)
-
     if(claims_serializer.is_valid() != True):
         return False
 
@@ -22,18 +28,14 @@ def processClaim(claims_json_data):
     # Using this Async model trigger events downstream and chain processes
     # If the processing required a long chain of tasks, then use a library like luigi to chain them nicer
     # could also use a service bus to talk to it but keep it simple
-    sendClaimProcessedEvent(claims_data)
+    asyncio.run(send_claim_processed_event(claims_data))
 
     return True
 
-def calculateNetFees(claims_data):
+def calculate_net_fees(claims_data):
     required_fields = [ClaimsFields.ProviderFees, ClaimsFields.AllowedFees, ClaimsFields.MemberCoinsurance, ClaimsFields.MemberCopay]
     all_fields = list(claims_data.keys())
 
-
-    print(required_fields)
-    print(all_fields)
-    
     if not any(field in required_fields for field in all_fields):
         return None
 

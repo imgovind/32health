@@ -1,6 +1,6 @@
 
 # An async method that doesn't block the processing
-async def sendClaimProcessedEvent(claims_data):
+async def send_claim_processed_event(claims_data):
     # Send an event to payments queue
     # On success send
     # On failure, send the events to a failure queue

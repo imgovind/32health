@@ -1,7 +1,7 @@
 import datetime
 from claims.constants import ClaimsFields
 
-def ValidateRequest(claims_json_data):
+def validate_request(claims_json_data):
     # Null check
     if claims_json_data == None:
         return None
