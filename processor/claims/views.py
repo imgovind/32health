@@ -22,7 +22,13 @@ def claimsApi(request, id=0):
         if claims_serializer.is_valid():
             claims_serializer.save()
             return JsonResponse("Added Successfully", safe=False)
+
+            # Over here what I would do is use RabbitMQ or Kafka
+            # Send a message to a queue to which the payment service has subscribed to
+            # Using this Async model to keep track of the downstream processes
+            # could also use a service bus to talk to it but 
+
         else:
-            return JsonResponse("Couldn't Add", safe=False)
+            return JsonResponse("Invalid Data", safe=False)
     else:
         return JsonResponse("Unsupported Operation", safe=False)
