@@ -30,7 +30,7 @@ def process_claim(claims_json_data):
     # could also use a service bus to talk to it but keep it simple
     asyncio.run(send_claim_processed_event(claims_data))
 
-    return True
+    return claims_serializer.data
 
 def calculate_net_fees(claims_data):
     required_fields = [ClaimsFields.ProviderFees, ClaimsFields.AllowedFees, ClaimsFields.MemberCoinsurance, ClaimsFields.MemberCopay]
