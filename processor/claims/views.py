@@ -17,16 +17,13 @@ def claimsApi(request, id=0):
     elif request.method == 'POST':
         claims_json_data = JSONParser().parse(request)
 
-        if processClaim(claims_json_data):
-            return JsonResponse({'status':'false','message':'Added successfully'}, status=200, safe=False)
+        # Request could not be processed
+        if not processClaim(claims_json_data):
+            return JsonResponse({'status':'false','message':'Request could not be processed'}, status=400, safe=False)
 
-            # Over here what I would do is use RabbitMQ or Kafka
-            # Send a message to a queue to which the payment service has subscribed to
-            # Using this Async model trigger events downstream and chain processes
-            # If the processing required a long chain of tasks, then use a library like luigi to chain them nicer
-            # could also use a service bus to talk to it but keep it simple
-
-        else:
-            return JsonResponse({'status':'false','message':'Bad Request'}, status=400, safe=False)
+        # Request was successfully processed
+        return JsonResponse({'status':'false','message':'Added successfully'}, status=200, safe=False)
     else:
+
+        # Unsupported operation
         return JsonResponse({'status':'false','message':'Unsupported Operation'}, status=400, safe=False)
