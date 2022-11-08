@@ -1,0 +1,155 @@
+{
+	"info": {
+		"_postman_id": "b711d7e4-cb3f-4930-8312-3a7ffc408e7d",
+		"name": "Claims",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Get Claims",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8000/claims",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"claims"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Post Claims",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"ServiceDate\": \"3/28/18 0:00\",\n    \"SubmittedProcedure\": \"D4211\",\n    \"Quadrant\": \"UR\",\n    \"PlanGroupNumber\": \"GRP-1000\",\n    \"SubscriberNumber\": \"3730189502\",\n    \"ProviderNPI\": 1497775530,\n    \"ProviderFees\": \"$178.00\",\n    \"AllowedFees\": \"$178.00\",\n    \"MemberCoinsurance\": \"$35.60\",\n    \"MemberCopay\": \"$0.0\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/claims",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"claims"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Post Claims Copy",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": " {\n \"ServiceDate\": \"3/28/18 0:00\",\n \"SubmittedProcedure\": \"D0210\",\n \"PlanGroupNumber\": \"GRP-1000\",\n \"SubscriberNumber\": \"3730189502\",\n \"ProviderNPI\": \"1497775530\",\n \"ProviderFees\": \"$108.00\",\n \"AllowedFees\": \"$108.00\",\n \"MemberCoinsurance\": \"$0.00\",\n \"MemberCopay\": \"$0.0\"\n }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/claims",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"claims"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Post Claims Copy 2",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": " {\n \"ServiceDate\": \"3/28/18 0:00\",\n \"SubmittedProcedure\": \"D0210\",\n \"PlanGroupNumber\": \"GRP-1000\",\n \"SubscriberNumber\": \"3730189502\",\n \"ProviderNPI\": \"1497775530\",\n \"ProviderFees\": \"$108.00\",\n \"AllowedFees\": \"$108.00\",\n \"MemberCoinsurance\": \"$0.00\",\n \"MemberCopay\": \"$0.0\"\n }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/claims",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"claims"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Post Claims Copy 3",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": " {\n \"ServiceDate\": \"3/28/18 0:00\",\n \"SubmittedProcedure\": \"D0210\",\n \"PlanGroupNumber\": \"GRP-1000\",\n \"SubscriberNumber\": \"3730189502\",\n \"ProviderNPI\": \"1497775530\",\n \"ProviderFees\": \"$108.00\",\n \"AllowedFees\": \"$108.00\",\n \"MemberCoinsurance\": \"$0.00\",\n \"MemberCopay\": \"$0.0\"\n }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/claims",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"claims"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
