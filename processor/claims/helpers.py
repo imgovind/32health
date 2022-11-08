@@ -18,7 +18,7 @@ def ValidateRequest(claims_json_data):
     SubmittedProcedure = claims_json_data[ClaimsFields.SubmittedProcedure]
 
     # Check if the submitted procedure starts with D
-    if SubmittedProcedure.split[0] != 'D':
+    if SubmittedProcedure[0] != 'D':
         return None
 
     # Quandrant
@@ -76,8 +76,7 @@ def ValidateRequest(claims_json_data):
         ClaimsFields.ProviderFees : ProviderFees,
         ClaimsFields.AllowedFees : AllowedFees,
         ClaimsFields.MemberCoinsurance : MemberCoinsurance,
-        ClaimsFields.MemberCopay : MemberCopay,
-        ClaimsFields.NetFee : NetFee,
+        ClaimsFields.MemberCopay : MemberCopay
     }
 
     return claims_data
