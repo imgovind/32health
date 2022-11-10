@@ -5,6 +5,8 @@
 - cd processor
 - docker build -f DockerFile . -t 32health-backend-test
 - docker run -it -p 8000:8000 32health-backend-test
+- Import the provided postman collection and execute against the API
+- If you have Sql Pro or any other similar DB, you can view the db table on sqlite3 
 
 
 # Thoughts behind the API
